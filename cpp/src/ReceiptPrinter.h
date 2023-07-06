@@ -74,7 +74,9 @@ public:
     }
 
     std::string presentPrice(double price) const
-    { return getFormattedNumberAsString(price, 2); }
+    { 
+        return getFormattedNumberAsString(price, 2); 
+    }
 
     static std::string presentQuantity(const ReceiptItem &item)
     {
