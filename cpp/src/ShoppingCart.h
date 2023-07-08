@@ -19,7 +19,7 @@ public:
 
     void addItemQuantity(const Product& product, double quantity);
 
-    void calculateDiscount();
+    Discount* calculateDiscount(int quantityAsInt, int x, int unitPrice, int quantity, Offer offer, Product product);
 
     void handleOffers(Receipt& receipt, std::map<Product, Offer> offers, SupermarketCatalog* catalog);
 
