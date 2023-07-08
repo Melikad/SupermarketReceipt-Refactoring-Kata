@@ -19,6 +19,8 @@ public:
 
     void addItemQuantity(const Product& product, double quantity);
 
+    void calculateDiscount();
+
     void handleOffers(Receipt& receipt, std::map<Product, Offer> offers, SupermarketCatalog* catalog);
 
 private:
