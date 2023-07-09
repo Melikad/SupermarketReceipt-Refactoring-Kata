@@ -19,11 +19,13 @@ public:
 
     void addItemQuantity(const Product& product, double quantity);
 
-    Discount* calculateDiscount(int quantityAsInt, int x, int unitPrice, int quantity, Offer offer, Product product);
+    Discount* calculateDiscount(int unitPrice, double quantity, Offer offer, Product product);
 
     void handleOffers(Receipt& receipt, std::map<Product, Offer> offers, SupermarketCatalog* catalog);
 
 private:
+    
+    double calculateDiscountAmount(Offer offer, double quantity, double unitPrice);
     std::vector<ProductQuantity> items;
     std::map<Product, double> productQuantities;
 };
