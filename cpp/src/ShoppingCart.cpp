@@ -63,19 +63,16 @@ void ShoppingCart::handleOffers(Receipt& receipt, std::map<Product, Offer> offer
 
 double ShoppingCart::calculateDiscountAmount(Offer offer, double quantity, double unitPrice){
     int quantityAsInt = int (quantity);
-    if (offer.getOfferType() == SpecialOfferType::TwoForAmount) {
+    switch (offer.getOfferType()){
+    case SpecialOfferType::TwoForAmount:
         return -(unitPrice * quantity - (offer.getArgument() * (quantityAsInt / 2) + quantityAsInt % 2 * unitPrice));
-    }
-    else if (offer.getOfferType() == SpecialOfferType::ThreeForTwo) {
-        return -(quantity * unitPrice - ((quantityAsInt / 3 * 2 * unitPrice) + quantityAsInt % 3
-        * unitPrice));
-    }
-    else if (offer.getOfferType() == SpecialOfferType::TenPercentDiscount) {
+    case SpecialOfferType::ThreeForTwo:
+        return -(quantity * unitPrice - ((quantityAsInt / 3 * 2 * unitPrice) + quantityAsInt % 3 * unitPrice));
+    case SpecialOfferType::TenPercentDiscount:
         return -quantity * unitPrice * offer.getArgument() / 100.0;
+    case SpecialOfferType::FiveForAmount:
+        return -(unitPrice * quantity - (offer.getArgument() * quantityAsInt / 5 + quantityAsInt % 5 * unitPrice));
+    default:
+        return 0;
     }
-    else if (offer.getOfferType() == SpecialOfferType::FiveForAmount) {
-        return -(unitPrice * quantity - (offer.getArgument() * quantityAsInt / 5 + quantityAsInt 
-        % 5 * unitPrice));
-    }
-    return 0;
 }
